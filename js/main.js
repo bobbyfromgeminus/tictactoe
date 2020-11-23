@@ -3,7 +3,7 @@
 let playerState = 0;
 let sumOfPick = 0;
 let gameState = 0;
-let winGame = 0;
+const players = ['O', 'X']
 const gameArray = [
     '0', '1', '2',
     '3', '4', '5',
@@ -12,39 +12,44 @@ const gameArray = [
 
 // Tömb elemeinek vizsgálata
 
-function checkLine(i, j, k, box) {
-    const result = document.querySelector('.result-hide');
-    
+function checkLine(i, j, k, box) {    
     if (gameArray[i] === gameArray[j] && gameArray[i]===gameArray[k]) {
         gameState = 1;
-        winGame = 1;
-        result.innerHTML = 'A győztes: <b>'+gameArray[i]+'</b>';
-        result.setAttribute('class', 'result');
         const boxClass1 = box[i].getAttribute('class');
         const boxClass2 = box[j].getAttribute('class');
         const boxClass3 = box[k].getAttribute('class');
         box[i].setAttribute('class', boxClass1+' border');
         box[j].setAttribute('class', boxClass2+' border');
         box[k].setAttribute('class', boxClass3+' border');
-        document.querySelector('.restart-hide').setAttribute('class', 'restart');
+    }
+}
+
+function checkGrid(box) {
+    checkLine(0, 1, 2, box); // első sor
+    checkLine(3, 4, 5, box); // második sor
+    checkLine(6, 7, 8, box); // harmadik sor
+    checkLine(0, 3, 6, box); // első oszlop
+    checkLine(1, 4, 7, box); // második oszlop
+    checkLine(2, 5, 8, box); // harmadik oszlop
+    checkLine(0, 4, 8, box); // első átló
+    checkLine(2, 4, 6, box); // második átló
+    whoWin();
+}
+
+function whoWin() {
+    const result = document.querySelector('.result-hide');
+    const restart = document.querySelector('.restart-hide');
+    if (gameState===1) {
+        restart.setAttribute('class', 'restart');
+        result.setAttribute('class', 'result');
+        result.innerHTML = 'A győztes: <b>'+players[playerState]+'</b>';
     } else {
-        if (sumOfPick === 9 && winGame === 0) {
+        if (sumOfPick === 9) {
             result.innerHTML = 'Nincs győztes.';
             result.setAttribute('class', 'result');
             document.querySelector('.restart-hide').setAttribute('class', 'restart');
         }
     }
-}
-
-function checkGrid(box) {
-    checkLine(0, 1, 2, box); // 0 1 2 - első sor
-    checkLine(3, 4, 5, box); // 3 4 5 - második sor
-    checkLine(6, 7, 8, box); // 6 7 8 - harmadik sor
-    checkLine(0, 3, 6, box); // 1 3 6 - első oszlop
-    checkLine(1, 4, 7, box); // 1 4 7 - második oszlop
-    checkLine(2, 5, 8, box); // 2 5 8 - harmadik oszlop
-    checkLine(0, 4, 8, box); // 0 4 8 - első átló
-    checkLine(2, 4, 6, box); // 2 4 6 - második átló
 }
 
 function boxPicker(i, box) {
