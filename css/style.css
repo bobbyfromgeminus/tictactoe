@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
 * {
@@ -14,7 +15,7 @@
 }
 
 html {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
 }
 
@@ -22,15 +23,15 @@ body {
     display: grid;
     width: 100vw;
     height: 100vh;
-    grid-template-columns: 1fr 30rem 1fr;
-    grid-template-rows: 4rem 1fr 30rem 1fr;
+    grid-template-columns: .5fr .5fr 30rem 1fr;
+    grid-template-rows: 4rem .5fr 5rem .25fr 30rem .25fr .15fr .6fr;
     background:#F48B94;
     background: linear-gradient(180deg, #ACDBC9 0%, #DBEBC2 30%, #FDD2B5 40%, #F7A7A6 60%, #F48B94 100%);
 }
 
 header {
     display: block;
-    grid-column: 1/4;
+    grid-column: 1/5;
     grid-row: 1/2;
     font-size: 1.4rem;
     line-height: 4rem;
@@ -43,10 +44,30 @@ header {
     letter-spacing: .1rem;
 }
 
+.result-hide {
+    display: none;
+}
+
+.result {
+    display: block;
+    grid-column: 3/4;
+    grid-row: 3/4;
+    text-align: center;
+    font-size: 2rem;
+    line-height: 5rem;
+    padding: -1;
+    margin: 0;
+    color: #0f4712;
+    letter-spacing: .2rem;
+    text-transform: uppercase;
+    background-color: #ACDBC9;
+    border: 1px solid #0f4712
+}
+
 main {
     display: grid;
-    grid-column: 2/3;
-    grid-row: 3/4;
+    grid-column: 3/4;
+    grid-row: 5/6;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: .5rem;
@@ -63,6 +84,19 @@ main {
     color: #cc4853;
 }
 
+.picked {
+    display: block;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 5rem;
+    line-height: 9rem;
+    text-align: center; 
+    cursor: pointer;
+}
+
+.border {
+    border: 3px solid rgb(53, 53, 53);
+}
+
 .red {
     background-color: #f7e4e5;
     color: #cc4853;
@@ -71,4 +105,45 @@ main {
 .green {
     background-color: #e4f7e5;
     color: #48cc53;
+}
+
+footer {
+    display: block;
+    grid-column: 3/4;
+    grid-row: 7/8;
+    text-align: center;
+    font-size: 1.7rem;
+    color: #c00000;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    font-weight: 700;
+}
+
+.restart-hide {
+    display: none;
+}
+
+.restart {
+    display: block;
+    grid-column: 3/4;
+    grid-row: 8/9;
+    text-align: center;
+    font-size: 1.7rem;
+    color: #c00000;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    font-weight: 700;
+}
+
+.restart a {
+    display: inline-block;
+    line-height: 4rem;
+    padding: 0 3rem;
+    background-color: #cc4853;
+    color: rgba(255,255,255,1);
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: .1rem;
+    text-decoration: none;
 }
